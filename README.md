@@ -1,5 +1,9 @@
 # bike-rental
 
+## Demo
+
+[https://bike-rental-a164e.web.app/](https://bike-rental-a164e.web.app/)
+
 ## Project setup
 ```
 npm install
