@@ -5,19 +5,19 @@
     <div class="container">
 
       <!-- Brand/logo -->
-      <a class="navbar-brand fw-bold" href="#">
+      <div class="navbar-brand fw-bold">
         <i class="fa-solid fa-bicycle text-success"></i>
         Lund Bike Rental
-      </a>
+      </div>
 
       <!-- User rental info -->
       <span v-if="isUserRenting">
         Renting bike
-        <a @click="clickRentedBike" title="Show bike" href="#">{{ rentedBike.name }}</a> for {{ formattedTime }}
+        <a @click="clickRentedBike" title="Show bike" class="text-success" href="#">{{ rentedBike.name }}</a> - {{ formattedTime }}
       </span>
 
       <!-- User authentication info -->
-      <button v-if="!user" @click="signIn" type="button" class="btn btn-primary">
+      <button v-if="!user" @click="signIn" type="button" class="btn btn-success">
         <i class="fa-brands fa-google me-2"></i>
         Sign in
       </button>
@@ -41,6 +41,11 @@
                   @setBike="setBike"
                   @rentBike="rentBike"
                   @returnBike="returnBike"></InteractiveMap>
+
+  <!-- Map loading indicator -->
+  <div v-else class="loading text-success">
+    Loading map <i class="fas fa-tire-rugged fa-spin ms-2 text-dark"></i>
+  </div>
 
   <!-- App alerts -->
   <alert :message="message"></alert>
@@ -81,10 +86,19 @@
   a {
     text-decoration: none;
   }
+  a:hover {
+    text-decoration: underline;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  .loading {
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 </style>
 
 <script>
@@ -236,7 +250,9 @@
       // Listen for login/logout and update the user + map accordingly
       onAuthStateChanged(this.$auth, async (user) => {
         if (user) {
+          // Set session variable/header for all API-calls
           API.setHeader(await user.getIdToken())
+
           this.user = user
           this.updateMarkerColor(this.$const.MarkerColors.RentedByCurrentUser)
         } else {

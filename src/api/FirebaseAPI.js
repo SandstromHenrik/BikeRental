@@ -1,9 +1,9 @@
 import axios from 'axios'
 import constants from '../helpers/constants'
 
-if (process.env.NODE_ENV === 'development')
+/*if (process.env.NODE_ENV === 'development')
   axios.defaults.baseURL = constants.Environments.dev
-else
+else*/
   axios.defaults.baseURL = constants.Environments.prod
 
 export default {

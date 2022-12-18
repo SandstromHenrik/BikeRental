@@ -3,7 +3,7 @@
 
     <!-- Window title -->
     <h2 class="p-2 m-0">
-      <i class="fa-solid fa-bicycle text-primary me-1"></i>
+      <i class="fa-solid fa-bicycle text-success me-1"></i>
       Bike "{{ bike.name }}"
     </h2>
     <hr class="p-0 m-0" />
@@ -40,12 +40,12 @@
 
         <!-- Rent/return button -->
         <div class="mt-3">
-          <button v-if="!bike.rented && !isUserRenting" @click="rentBike" type="button" class="btn btn-primary">
+          <button v-if="!bike.rented && !isUserRenting" @click="rentBike" type="button" class="btn btn-success">
             <i v-if="loading" class="fas fa-tire-rugged fa-spin me-1"></i>
             <i v-else class="fa-solid fa-lock-open me-1"></i>
             Rent Bicycle
           </button>
-          <button v-else-if="bike.rentedByUID === user.uid" @click="returnBike" type="button" class="btn btn-primary">
+          <button v-else-if="bike.rentedByUID === user.uid" @click="returnBike" type="button" class="btn btn-success">
             <i v-if="loading" class="fas fa-tire-rugged fa-spin me-1"></i>
             <i v-else class="fa-solid fa-lock me-1"></i>
             Return Bicycle

@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 const admin = require('firebase-admin');
 
-// Initialize admin rights & storage bucket
+// Initialize admin rights
 let firebase
 if (['true', true].includes(process.env.FUNCTIONS_EMULATOR)) {
   const serviceAccount = require('./firebase-adminsdk-h9ygo.json');
